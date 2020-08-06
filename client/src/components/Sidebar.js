@@ -1,6 +1,8 @@
 import React from "react";
 import { ReactComponent as Logo } from "../assets/logo.svg";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
+
+import { FiHome, FiUser, FiBell, FiBookmark } from "react-icons/fi";
 
 const Sidebar = () => {
   return (
@@ -9,16 +11,20 @@ const Sidebar = () => {
         <Logo style={{ height: "50px" }} />
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <FiHome />
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/123">Profile</Link>
+            <FiUser />
+            <NavLink to="/123">Profile</NavLink>
           </li>
           <li>
-            <Link to="/notifications">Notifications</Link>
+            <FiBell />
+            <NavLink to="/notifications">Notifications</NavLink>
           </li>
           <li>
-            <Link to="/bookmarks">Bookmarks</Link>
+            <FiBookmark />
+            <NavLink to="/bookmarks">Bookmarks</NavLink>
           </li>
         </ul>
       </Router>

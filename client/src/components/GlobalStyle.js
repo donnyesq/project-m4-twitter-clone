@@ -44,8 +44,8 @@ body {
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
-ul[class],
-ol[class] {
+ul,
+ol {
   list-style: none;
 }
 
