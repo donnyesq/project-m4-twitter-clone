@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components/macro";
 import { COLORS } from "../constants";
 
 const primary = COLORS.primary;

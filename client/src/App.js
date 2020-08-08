@@ -7,10 +7,11 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 
-import GlobaStyle from "./components/GlobalStyle";
-import styled from "styled-components";
+import { CurrentUserContext } from "./components/CurrentUserContext";
 
-function App() {
+import GlobaStyle from "./components/GlobalStyle";
+
+const App = () => {
   return (
     <div className="App">
       <GlobaStyle />
@@ -18,28 +19,28 @@ function App() {
         <Sidebar />
         <Router>
           <Switch>
-            <Route exact path="/">
-              <Homefeed />
-            </Route>
-
-            <Route path="/notifications">
+            <Route exact path="/notifications">
               <Notifications />
             </Route>
 
-            <Route path="/bookmarks">
+            <Route exact path="/bookmarks">
               <Bookmarks />
             </Route>
-            <Route path="/tweet/:tweetId">
+            <Route exact path="/tweet/:tweetId">
               <TweetDetails />
             </Route>
-            <Route path="/:profileId">
+            <Route exact path="/:profileId">
               <Profile />
+            </Route>
+
+            <Route exact path="/">
+              <Homefeed />
             </Route>
           </Switch>
         </Router>
       </div>
     </div>
   );
-}
+};
 
 export default App;
