@@ -6,17 +6,33 @@ import { FiMessageCircle, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
 
 const TweetWrapper = styled.div`
   display: flex;
+  width: 900px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Avatar = styled.img`
   height: 60px;
+  width: 60px;
   border-radius: 50%;
   margin-right: 20px;
 `;
 
 const StyledNav = styled.nav`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 20px 0 40px 0;
+  width: 500px;
+`;
+
+const StyledAnchor = styled.a`
+  color: black;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Tweet = ({ tweet }) => {
@@ -28,9 +44,14 @@ const Tweet = ({ tweet }) => {
 
       <div>
         <div style={{ display: "flex" }}>
-          <h3>{tweet.author.displayName}</h3>
-          <p>@{tweet.author.handle}</p>
-          <p>{moment(tweet.timestamp).format("MMM Do YYYY")}</p>
+          <h3 style={{ marginRight: "10px" }}>{tweet.author.displayName}</h3>
+          <p style={{ marginRight: "10px", color: "gray" }}>
+            @{tweet.author.handle}
+          </p>
+          <span style={{ marginRight: "10px", color: "gray" }}>.</span>
+          <p style={{ marginRight: "10px", color: "gray" }}>
+            {moment(tweet.timestamp).format("MMM Do YYYY")}
+          </p>
         </div>
 
         <div>
@@ -39,18 +60,18 @@ const Tweet = ({ tweet }) => {
         </div>
 
         <StyledNav>
-          <a>
+          <StyledAnchor href="#">
             <FiMessageCircle />
-          </a>
-          <a>
+          </StyledAnchor>
+          <StyledAnchor href="#">
             <FiRepeat />
-          </a>
-          <a>
+          </StyledAnchor>
+          <StyledAnchor href="#">
             <FiHeart />
-          </a>
-          <a>
+          </StyledAnchor>
+          <StyledAnchor href="#">
             <FiShare />
-          </a>
+          </StyledAnchor>
         </StyledNav>
       </div>
     </TweetWrapper>
