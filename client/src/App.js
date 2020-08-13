@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Bookmarks from "./components/Bookmarks";
 import Homefeed from "./components/Homefeed";
@@ -7,17 +7,23 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 
-import { CurrentUserContext } from "./components/CurrentUserContext";
-
 import GlobaStyle from "./components/GlobalStyle";
 
+import { CurrentUserContext } from "./components/CurrentUserContext";
+
 const App = () => {
+  const { currentUser, status } = useContext(CurrentUserContext);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="App">
       <GlobaStyle />
       <div style={{ display: "flex" }}>
-        <Sidebar />
         <Router>
+          <Sidebar />
           <Switch>
             <Route exact path="/notifications">
               <Notifications />

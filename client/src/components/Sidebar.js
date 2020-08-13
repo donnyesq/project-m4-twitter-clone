@@ -7,6 +7,10 @@ import { FiHome, FiUser, FiBell, FiBookmark } from "react-icons/fi";
 
 import { COLORS } from "../constants";
 
+const StyledAside = styled.aside`
+  min-width: 180px;
+`;
+
 const StyledLogo = styled(Logo)`
   margin: 20px 0 0 0;
   height: 30px;
@@ -41,37 +45,35 @@ const StyledUl = styled.ul`
 
 const Sidebar = () => {
   return (
-    <aside className="sidebar-nav">
-      <Router>
-        <StyledLogo />
-        <StyledUl>
-          <StyledLi>
-            <StyledNavLink to="/">
-              <FiHome style={{ marginRight: "10px" }} />
-              Home
-            </StyledNavLink>
-          </StyledLi>
-          <StyledLi>
-            <StyledNavLink to="/123">
-              <FiUser style={{ marginRight: "10px" }} />
-              Profile
-            </StyledNavLink>
-          </StyledLi>
-          <StyledLi>
-            <StyledNavLink to="/notifications">
-              <FiBell style={{ marginRight: "10px" }} />
-              Notifications
-            </StyledNavLink>
-          </StyledLi>
-          <StyledLi>
-            <StyledNavLink to="/bookmarks">
-              <FiBookmark style={{ marginRight: "10px" }} />
-              Bookmarks
-            </StyledNavLink>
-          </StyledLi>
-        </StyledUl>
-      </Router>
-    </aside>
+    <StyledAside className="sidebar-nav">
+      <StyledLogo />
+      <StyledUl>
+        <StyledLi>
+          <StyledNavLink exact to="/">
+            <FiHome style={{ marginRight: "10px" }} />
+            Home
+          </StyledNavLink>
+        </StyledLi>
+        <StyledLi>
+          <StyledNavLink to="/123">
+            <FiUser style={{ marginRight: "10px" }} />
+            Profile
+          </StyledNavLink>
+        </StyledLi>
+        <StyledLi>
+          <StyledNavLink to="/notifications">
+            <FiBell style={{ marginRight: "10px" }} />
+            Notifications
+          </StyledNavLink>
+        </StyledLi>
+        <StyledLi>
+          <StyledNavLink to="/bookmarks">
+            <FiBookmark style={{ marginRight: "10px" }} />
+            Bookmarks
+          </StyledNavLink>
+        </StyledLi>
+      </StyledUl>
+    </StyledAside>
   );
 };
 
