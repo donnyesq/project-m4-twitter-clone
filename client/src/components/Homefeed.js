@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import Tweet from "./Tweet";
 import TextArea from "./TextArea";
-
-import { CurrentUserContext } from "./CurrentUserContext";
 
 import styled from "styled-components";
 
@@ -14,15 +12,12 @@ const HomefeedWrapper = styled.div`
   padding-right: 40px;
 `;
 
-const Title = styled.h3`
-  margin: 15px;
+const Header = styled.div`
+  border: 1px solid gainsboro;
 `;
 
-const Avatar = styled.img`
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  margin-right: 20px;
+const Title = styled.h3`
+  margin: 15px;
 `;
 
 const StyledLi = styled.li`
@@ -35,7 +30,11 @@ const StyledLi = styled.li`
 
 const Homefeed = () => {
   const [tweets, setTweets] = React.useState(null);
-  const { currentUser, status } = useContext(CurrentUserContext);
+
+  const postTweet = (data) => {
+    setTweets({ ...tweets, data });
+    console.log("data from homefeed", data.tweet.status);
+  };
 
   React.useEffect(() => {
     fetch("/api/me/home-feed", { method: "GET" })
@@ -52,15 +51,17 @@ const Homefeed = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [tweets]);
 
   return !tweets ? (
     <div>Loading Tweets...</div>
   ) : (
     <HomefeedWrapper>
-      <Title>Home</Title>
-      <Avatar src={currentUser.profile.avatarSrc} alt="photo" />
-      <TextArea />
+      <Header>
+        <Title>Home</Title>
+      </Header>
+
+      <TextArea postTweet={postTweet} />
       <ul style={{ margin: 0, borderRight: "1px solid gainsboro" }}>
         <StyledLi>
           {tweets.tweetIds.map((tweetId) => {
