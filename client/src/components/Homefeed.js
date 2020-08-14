@@ -12,14 +12,6 @@ const HomefeedWrapper = styled.div`
   padding-right: 40px;
 `;
 
-const Header = styled.div`
-  border: 1px solid gainsboro;
-`;
-
-const Title = styled.h3`
-  margin: 15px;
-`;
-
 const StyledLi = styled.li`
   border-bottom: 1px solid gainsboro;
 
@@ -28,7 +20,7 @@ const StyledLi = styled.li`
   }
 `;
 
-const Homefeed = () => {
+const Homefeed = ({ pageTitle, setPageTitle }) => {
   const [tweets, setTweets] = React.useState(null);
 
   const postTweet = (data) => {
@@ -53,14 +45,14 @@ const Homefeed = () => {
       });
   }, [tweets]);
 
+  React.useEffect(() => {
+    setPageTitle("Home");
+  }, []);
+
   return !tweets ? (
     <div>Loading Tweets...</div>
   ) : (
     <HomefeedWrapper>
-      <Header>
-        <Title>Home</Title>
-      </Header>
-
       <TextArea postTweet={postTweet} />
       <ul style={{ margin: 0, borderRight: "1px solid gainsboro" }}>
         <StyledLi>

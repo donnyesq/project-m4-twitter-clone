@@ -35,7 +35,11 @@ const StyledAnchor = styled.a`
   }
 `;
 
-const TweetDetails = ({ tweet }) => {
+const TweetDetails = ({ tweet, pageTitle, setPageTitle }) => {
+  React.useEffect(() => {
+    setPageTitle("Meow");
+  }, []);
+
   return (
     <TweetWrapper>
       <div>

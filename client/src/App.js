@@ -6,6 +6,7 @@ import Notifications from "./components/Notifications";
 import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
 
 import GlobaStyle from "./components/GlobalStyle";
 
@@ -13,6 +14,7 @@ import { CurrentUserContext } from "./components/CurrentUserContext";
 
 const App = () => {
   const { currentUser, status } = useContext(CurrentUserContext);
+  const [pageTitle, setPageTitle] = React.useState("");
 
   if (status === "loading") {
     return <div>Loading...</div>;
@@ -24,25 +26,31 @@ const App = () => {
       <div style={{ display: "flex" }}>
         <Router>
           <Sidebar />
-          <Switch>
-            <Route exact path="/notifications">
-              <Notifications />
-            </Route>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Header pageTitle={pageTitle} setPageTitle={setPageTitle} />
+            <Switch>
+              <Route exact path="/notifications">
+                <Notifications />
+              </Route>
 
-            <Route exact path="/bookmarks">
-              <Bookmarks />
-            </Route>
-            <Route exact path="/tweet/:tweetId">
-              <TweetDetails />
-            </Route>
-            <Route exact path="/:profileId">
-              <Profile />
-            </Route>
+              <Route exact path="/bookmarks">
+                <Bookmarks />
+              </Route>
+              <Route exact path="/tweet/:tweetId">
+                <TweetDetails
+                  pageTitle={pageTitle}
+                  setPageTitle={setPageTitle}
+                />
+              </Route>
+              <Route exact path="/:profileId">
+                <Profile pageTitle={pageTitle} setPageTitle={setPageTitle} />
+              </Route>
 
-            <Route exact path="/">
-              <Homefeed />
-            </Route>
-          </Switch>
+              <Route exact path="/">
+                <Homefeed pageTitle={pageTitle} setPageTitle={setPageTitle} />
+              </Route>
+            </Switch>
+          </div>
         </Router>
       </div>
     </div>

@@ -1,6 +1,10 @@
 import React from "react";
 
-const Profile = () => {
+const Profile = ({ pageTitle, setPageTitle }) => {
+  React.useEffect(() => {
+    setPageTitle("Profile");
+  }, []);
+
   return <div>Profile</div>;
 };
 
