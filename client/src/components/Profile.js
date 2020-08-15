@@ -28,7 +28,7 @@ const Avatar = styled.img`
   margin: 60px;
   border: 2px solid white;
   position: absolute;
-  top: 25%;
+  top: 33%;
 `;
 
 const StyledButton = styled.button`

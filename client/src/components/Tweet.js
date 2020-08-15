@@ -92,6 +92,13 @@ const Tweet = ({ tweet }) => {
     }
   };
 
+  const handleProfileClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    history.push(`/${tweet.author.handle}/profile`);
+  };
+
   return (
     <TweetWrapper
       tabIndex="0"
@@ -99,12 +106,18 @@ const Tweet = ({ tweet }) => {
       onKeyPress={handleTweetEnter}
     >
       <div>
-        <Avatar src={tweet.author.avatarSrc} alt="photo" />
+        <Avatar
+          onClick={handleProfileClick}
+          src={tweet.author.avatarSrc}
+          alt="photo"
+        />
       </div>
 
       <div style={{ paddingLeft: "15px" }}>
         <div style={{ display: "flex" }}>
-          <h3 style={{ marginRight: "10px" }}>{tweet.author.displayName}</h3>
+          <h3 onClick={handleProfileClick} style={{ marginRight: "10px" }}>
+            {tweet.author.displayName}
+          </h3>
           <p style={{ marginRight: "10px", color: "gray" }}>
             @{tweet.author.handle}
           </p>

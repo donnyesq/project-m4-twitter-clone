@@ -21,7 +21,7 @@ const StyledLi = styled.li`
   }
 `;
 
-const Homefeed = ({ pageTitle, setPageTitle }) => {
+const Homefeed = ({ setPageTitle }) => {
   const [tweets, setTweets] = React.useState(null);
 
   const postTweet = (data) => {
