@@ -62,6 +62,7 @@ const CurrentUserProfile = ({ currentUser, pageTitle, setPageTitle }) => {
         })
         .catch((error) => {
           console.log(error);
+          return <div>***Something went wrong***</div>;
         });
     }
   }, [currentUser]);

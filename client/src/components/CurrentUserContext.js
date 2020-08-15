@@ -8,10 +8,20 @@ export const CurrentUserProvider = ({ children }) => {
 
   React.useEffect(() => {
     fetch("/api/me/profile", { method: "GET" })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
       .then((user) => {
         setStatus("success");
         setCurrentUser(user);
+      })
+      .catch((error) => {
+        console.log(error);
+        return <div>***Something went wrong***</div>;
       });
   }, []);
 

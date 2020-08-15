@@ -65,7 +65,13 @@ const TextArea = ({ postTweet }) => {
       },
       body: JSON.stringify({ status: userInput }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
       .then((data) => {
         postTweet(data);
         const form = document.querySelector("#form");

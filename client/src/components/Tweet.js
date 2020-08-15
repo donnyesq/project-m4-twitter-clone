@@ -7,6 +7,7 @@ import { FiMessageCircle, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
 const TweetWrapper = styled.div`
   display: flex;
   width: 900px;
+  padding-top: 10px;
 
   &:hover {
     cursor: pointer;
@@ -18,6 +19,10 @@ const Avatar = styled.img`
   width: 60px;
   border-radius: 50%;
   margin-right: 20px;
+`;
+
+const TweetMedia = styled.img`
+  border-radius: 20px;
 `;
 
 const StyledNav = styled.nav`
@@ -42,7 +47,7 @@ const Tweet = ({ tweet }) => {
         <Avatar src={tweet.author.avatarSrc} alt="photo" />
       </div>
 
-      <div>
+      <div style={{ paddingLeft: "15px" }}>
         <div style={{ display: "flex" }}>
           <h3 style={{ marginRight: "10px" }}>{tweet.author.displayName}</h3>
           <p style={{ marginRight: "10px", color: "gray" }}>
@@ -56,7 +61,16 @@ const Tweet = ({ tweet }) => {
 
         <div>
           {tweet.status}
-          {tweet.media.length > 0 ? <img src={tweet.media.url} /> : null}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "600px",
+              margin: "10px 10px 10px 0",
+            }}
+          >
+            {tweet.media.length > 0 && <TweetMedia src={tweet.media[0].url} />}
+          </div>
         </div>
 
         <StyledNav>

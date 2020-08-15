@@ -42,6 +42,7 @@ const Homefeed = ({ pageTitle, setPageTitle }) => {
       })
       .catch((error) => {
         console.log(error);
+        return <div>***Something went wrong***</div>;
       });
   }, [tweets]);
 
@@ -54,7 +55,13 @@ const Homefeed = ({ pageTitle, setPageTitle }) => {
   ) : (
     <HomefeedWrapper>
       <TextArea postTweet={postTweet} />
-      <ul style={{ margin: 0, borderRight: "1px solid gainsboro" }}>
+      <ul
+        style={{
+          margin: 0,
+          padding: "0 0 0 20px",
+          borderRight: "1px solid gainsboro",
+        }}
+      >
         <StyledLi>
           {tweets.tweetIds.map((tweetId) => {
             let foundTweet = tweets.tweetsById[tweetId];
