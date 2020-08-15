@@ -64,7 +64,9 @@ const Homefeed = ({ pageTitle, setPageTitle }) => {
         <StyledLi>
           {tweets.tweetIds.map((tweetId) => {
             let foundTweet = tweets.tweetsById[tweetId];
-            return <Tweet key={tweetId} tweet={foundTweet} />;
+            return (
+              <Tweet key={tweetId} tweet={foundTweet} aria-label="View Tweet" />
+            );
           })}
         </StyledLi>
       </ul>
