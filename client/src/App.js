@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Bookmarks from "./components/Bookmarks";
 import Homefeed from "./components/Homefeed";
 import Notifications from "./components/Notifications";
-import Profile from "./components/Profile";
+import CurrentUserProfile from "./components/CurrentUserProfile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
@@ -42,8 +42,12 @@ const App = () => {
                   setPageTitle={setPageTitle}
                 />
               </Route>
-              <Route exact path="/:profileId">
-                <Profile pageTitle={pageTitle} setPageTitle={setPageTitle} />
+              <Route exact path="/me">
+                <CurrentUserProfile
+                  pageTitle={pageTitle}
+                  setPageTitle={setPageTitle}
+                  currentUser={currentUser}
+                />
               </Route>
 
               <Route exact path="/">

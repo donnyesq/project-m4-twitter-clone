@@ -2,6 +2,7 @@ import React from "react";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
+import { CurrentUserContext } from "../components/CurrentUserContext";
 
 import { FiHome, FiUser, FiBell, FiBookmark } from "react-icons/fi";
 
@@ -65,6 +66,8 @@ const StyledButton = styled.button`
 `;
 
 const Sidebar = () => {
+  const { currentUser, status } = React.useContext(CurrentUserContext);
+
   return (
     <StyledAside className="sidebar-nav">
       <StyledLogo />
@@ -77,7 +80,7 @@ const Sidebar = () => {
             </StyledNavLink>
           </StyledLi>
           <StyledLi>
-            <StyledNavLink to="/123">
+            <StyledNavLink to="/me">
               <FiUser style={{ marginRight: "10px" }} />
               Profile
             </StyledNavLink>
