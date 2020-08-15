@@ -48,14 +48,24 @@ const Tweet = ({ tweet }) => {
 
   console.log("tweet", tweet);
 
-  const handleClick = (event) => {
+  const handleTweetClick = (event) => {
     event.preventDefault();
 
     history.push(`/tweet/${tweet.id}`);
   };
 
+  const handleTweetEnter = (event) => {
+    event.preventDefault();
+
+    if (event.key === "Enter") history.push(`/tweet/${tweet.id}`);
+  };
+
   return (
-    <TweetWrapper tabIndex="0" onClick={handleClick}>
+    <TweetWrapper
+      tabIndex="0"
+      onClick={handleTweetClick}
+      onKeyPress={handleTweetEnter}
+    >
       <div>
         <Avatar src={tweet.author.avatarSrc} alt="photo" />
       </div>
@@ -94,7 +104,7 @@ const Tweet = ({ tweet }) => {
             <FiRepeat />
           </StyledAnchor>
           <StyledAnchor href="#">
-            <FiHeart />
+            <FiHeart onClick />
           </StyledAnchor>
           <StyledAnchor href="#">
             <FiShare />
