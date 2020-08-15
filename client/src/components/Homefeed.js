@@ -25,7 +25,6 @@ const Homefeed = ({ pageTitle, setPageTitle }) => {
 
   const postTweet = (data) => {
     setTweets({ ...tweets, data });
-    console.log("data from homefeed", data.tweet.status);
   };
 
   React.useEffect(() => {

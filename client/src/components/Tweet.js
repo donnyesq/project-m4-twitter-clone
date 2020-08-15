@@ -1,6 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import moment from "moment";
+
+import TweetDetails from "./TweetDetails";
 
 import { FiMessageCircle, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
 
@@ -41,8 +44,18 @@ const StyledAnchor = styled.a`
 `;
 
 const Tweet = ({ tweet }) => {
+  const history = useHistory();
+
+  console.log("tweet", tweet);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+
+    history.push(`/tweet/${tweet.id}`);
+  };
+
   return (
-    <TweetWrapper>
+    <TweetWrapper tabIndex="0" onClick={handleClick}>
       <div>
         <Avatar src={tweet.author.avatarSrc} alt="photo" />
       </div>

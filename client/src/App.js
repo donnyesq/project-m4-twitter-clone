@@ -58,6 +58,13 @@ const App = () => {
                 />
               </Route>
 
+              <Route exact path="/tweet/:tweetId">
+                <TweetDetails
+                  setPageTitle={setPageTitle}
+                  currentUser={currentUser}
+                />
+              </Route>
+
               <Route exact path="/">
                 <Homefeed pageTitle={pageTitle} setPageTitle={setPageTitle} />
               </Route>

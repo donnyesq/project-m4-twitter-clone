@@ -21,10 +21,6 @@ const Avatar = styled.img`
 
 const StyledInput = styled.input`
   border: none;
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const StyledButton = styled.button`
@@ -38,10 +34,6 @@ const StyledButton = styled.button`
 
   &:hover {
     cursor: pointer;
-  }
-
-  &:focus {
-    outline: none;
   }
 `;
 

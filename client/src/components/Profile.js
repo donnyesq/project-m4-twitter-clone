@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import styled from "styled-components/macro";
 import moment from "moment";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
+import { COLORS } from "../constants";
 
 import Tweet from "./Tweet";
 
@@ -29,8 +30,23 @@ const Avatar = styled.img`
   top: 25%;
 `;
 
+const StyledButton = styled.button`
+  background-color: ${COLORS.primary};
+  border-radius: 30px;
+  color: white;
+  border: none;
+  padding: 5px;
+  width: 100px;
+  margin: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const InfoWrapper = styled.div`
-  padding-top: 100px;
+  padding-top: 30px;
+  padding-left: 30px;
 `;
 
 const StyledLi = styled.li`
@@ -99,13 +115,43 @@ const Profile = ({ pageTitle, setPageTitle }) => {
       <Banner src={currentUser.profile.bannerSrc} />
       <Avatar src={currentUser.profile.avatarSrc} />
 
+      {currentUser.profile.isBeingFollowedByYou ? (
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <StyledButton>Following</StyledButton>
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <StyledButton>Follow</StyledButton>
+        </div>
+      )}
+
       <InfoWrapper>
-        <h3>{currentUser.profile.displayName}</h3>
-        <p>@{currentUser.profile.handle}</p>
-        <div style={{ display: "flex" }}>
-          <FiMapPin />
+        <div style={{ margin: "0 0 10px 0" }}>
+          <h3>{currentUser.profile.displayName}</h3>
+          <div style={{ display: "flex" }}>
+            <p>@{currentUser.profile.handle}</p>
+            {currentUser.profile.isFollowingYou && (
+              <span
+                style={{
+                  backgroundColor: "gainsboro",
+                  borderRadius: "5px",
+                  color: "gray",
+                  padding: "0 3px 0 3px",
+                  marginLeft: "10px",
+                }}
+              >
+                Follows you
+              </span>
+            )}
+          </div>
+        </div>
+
+        <p style={{ marginBottom: "10px" }}>{currentUser.profile.bio}</p>
+
+        <div style={{ display: "flex", marginBottom: "10px" }}>
+          <FiMapPin style={{ marginRight: "5px" }} />
           <p>{currentUser.profile.location}</p>
-          <FiCalendar />
+          <FiCalendar style={{ margin: "0 5px" }} />
           <p>
             Joined: {moment(currentUser.profile.joined).format("MMMM YYYY")}
           </p>

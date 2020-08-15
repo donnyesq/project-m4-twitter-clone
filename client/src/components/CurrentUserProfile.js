@@ -86,6 +86,8 @@ const CurrentUserProfile = ({ currentUser, pageTitle, setPageTitle }) => {
           </p>
         </div>
 
+        <p>{currentUser.profile.bio}</p>
+
         <div style={{ display: "flex" }}>
           <p>
             <span style={{ fontWeight: "bold" }}>
