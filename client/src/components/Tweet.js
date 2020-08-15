@@ -45,8 +45,8 @@ const StyledAnchor = styled.a`
 
 const Tweet = ({ tweet }) => {
   const history = useHistory();
-
-  console.log("tweet", tweet);
+  const [numOfLikes, setNumOfLikes] = React.useState(tweet.numLikes);
+  const [isLiked, setIsLiked] = React.useState(tweet.isLiked);
 
   const handleTweetClick = (event) => {
     event.preventDefault();
@@ -58,6 +58,21 @@ const Tweet = ({ tweet }) => {
     event.preventDefault();
 
     if (event.key === "Enter") history.push(`/tweet/${tweet.id}`);
+  };
+
+  const toggleLike = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (!isLiked) {
+      setNumOfLikes(numOfLikes + 1);
+      setIsLiked(!isLiked);
+      console.log("numoflikes", numOfLikes);
+    } else {
+      setNumOfLikes(numOfLikes - 1);
+      setIsLiked(!isLiked);
+      console.log("numoflikes", numOfLikes);
+    }
   };
 
   return (
@@ -104,7 +119,8 @@ const Tweet = ({ tweet }) => {
             <FiRepeat />
           </StyledAnchor>
           <StyledAnchor href="#">
-            <FiHeart onClick />
+            <FiHeart onClick={toggleLike} />
+            {numOfLikes > 0 && <span>{numOfLikes}</span>}
           </StyledAnchor>
           <StyledAnchor href="#">
             <FiShare />
