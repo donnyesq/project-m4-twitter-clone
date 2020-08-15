@@ -1,6 +1,7 @@
 import React from "react";
 import Tweet from "./Tweet";
 import TextArea from "./TextArea";
+import Spinner from "./Spinner";
 
 import styled from "styled-components";
 
@@ -50,7 +51,7 @@ const Homefeed = ({ pageTitle, setPageTitle }) => {
   }, []);
 
   return !tweets ? (
-    <div>Loading Tweets...</div>
+    <Spinner />
   ) : (
     <HomefeedWrapper>
       <TextArea postTweet={postTweet} />

@@ -6,6 +6,7 @@ import { FiMapPin, FiCalendar } from "react-icons/fi";
 import { COLORS } from "../constants";
 
 import Tweet from "./Tweet";
+import Spinner from "./Spinner";
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -109,7 +110,7 @@ const Profile = ({ pageTitle, setPageTitle }) => {
   }, [currentUser]);
 
   return !currentUser ? (
-    <div>Loading Profile...</div>
+    <Spinner />
   ) : (
     <ProfileWrapper>
       <Banner src={currentUser.profile.bannerSrc} />

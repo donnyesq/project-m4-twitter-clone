@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import { useParams } from "react-router";
+import Spinner from "./Spinner";
 
 import { FiMessageCircle, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
 
@@ -109,7 +110,7 @@ const TweetDetails = ({ pageTitle, setPageTitle }) => {
   }, []);
 
   return !tweet ? (
-    <div>Loading Tweet...</div>
+    <Spinner />
   ) : (
     <TweetWrapper>
       <div>
