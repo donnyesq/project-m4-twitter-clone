@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../constants";
 import { CurrentUserContext } from "./CurrentUserContext";
-import Homefeed from "./Homefeed";
 
 const StyledDiv = styled.div`
   display: flex;

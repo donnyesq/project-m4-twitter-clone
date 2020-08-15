@@ -4,6 +4,7 @@ import Bookmarks from "./components/Bookmarks";
 import Homefeed from "./components/Homefeed";
 import Notifications from "./components/Notifications";
 import CurrentUserProfile from "./components/CurrentUserProfile";
+import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
@@ -42,9 +43,16 @@ const App = () => {
                   setPageTitle={setPageTitle}
                 />
               </Route>
+
               <Route exact path="/me">
                 <CurrentUserProfile
-                  pageTitle={pageTitle}
+                  setPageTitle={setPageTitle}
+                  currentUser={currentUser}
+                />
+              </Route>
+
+              <Route exact path="/:handle/profile">
+                <Profile
                   setPageTitle={setPageTitle}
                   currentUser={currentUser}
                 />
