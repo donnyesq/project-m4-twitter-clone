@@ -41,32 +41,71 @@ const StyledAnchor = styled.a`
   }
 `;
 
-const TweetDetails = ({ incomingTweet, pageTitle, setPageTitle }) => {
+const TweetDetails = ({ pageTitle, setPageTitle }) => {
   const { tweetId } = useParams();
   const [tweet, setTweet] = React.useState(null);
+  const [numOfLikes, setNumOfLikes] = React.useState(null);
+  const [isLiked, setIsLiked] = React.useState(null);
+
+  React.useEffect(() => {
+    if (tweet) {
+      setNumOfLikes(tweet.numLikes);
+      setIsLiked(tweet.isLiked);
+    }
+  }, [tweet]);
+
+  const toggleLike = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (!isLiked) {
+      setNumOfLikes(numOfLikes + 1);
+      setIsLiked(!isLiked);
+      console.log("numoflikes", numOfLikes);
+    } else {
+      setNumOfLikes(numOfLikes - 1);
+      setIsLiked(!isLiked);
+      console.log("numoflikes", numOfLikes);
+    }
+  };
+
+  const pressToggleLike = (event) => {
+    if (event.key === "Enter") {
+      event.stopPropagation();
+      event.preventDefault();
+
+      if (!isLiked) {
+        setNumOfLikes(numOfLikes + 1);
+        setIsLiked(!isLiked);
+        console.log("numoflikes", numOfLikes);
+      } else {
+        setNumOfLikes(numOfLikes - 1);
+        setIsLiked(!isLiked);
+        console.log("numoflikes", numOfLikes);
+      }
+    }
+  };
 
   React.useEffect(() => {
     setPageTitle("Meow");
   }, []);
 
   React.useEffect(() => {
-    if (!incomingTweet) {
-      fetch(`/api/tweet/${tweetId}`, { method: "GET" })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error("Something went wrong");
-          }
-        })
-        .then((data) => {
-          setTweet(data.tweet);
-        })
-        .catch((error) => {
-          console.log(error);
-          return <div>***Something went wrong***</div>;
-        });
-    }
+    fetch(`/api/tweet/${tweetId}`, { method: "GET" })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
+      .then((data) => {
+        setTweet(data.tweet);
+      })
+      .catch((error) => {
+        console.log(error);
+        return <div>***Something went wrong***</div>;
+      });
   }, []);
 
   return !tweet ? (
@@ -114,7 +153,8 @@ const TweetDetails = ({ incomingTweet, pageTitle, setPageTitle }) => {
             <FiRepeat />
           </StyledAnchor>
           <StyledAnchor href="#">
-            <FiHeart />
+            <FiHeart onClick={toggleLike} onKeyPress={pressToggleLike} />
+            {numOfLikes > 0 && <span>{numOfLikes}</span>}
           </StyledAnchor>
           <StyledAnchor href="#">
             <FiShare />

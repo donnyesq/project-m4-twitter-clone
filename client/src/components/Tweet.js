@@ -75,6 +75,23 @@ const Tweet = ({ tweet }) => {
     }
   };
 
+  const pressToggleLike = (event) => {
+    if (event.key === "Enter") {
+      event.stopPropagation();
+      event.preventDefault();
+
+      if (!isLiked) {
+        setNumOfLikes(numOfLikes + 1);
+        setIsLiked(!isLiked);
+        console.log("numoflikes", numOfLikes);
+      } else {
+        setNumOfLikes(numOfLikes - 1);
+        setIsLiked(!isLiked);
+        console.log("numoflikes", numOfLikes);
+      }
+    }
+  };
+
   return (
     <TweetWrapper
       tabIndex="0"
@@ -119,7 +136,7 @@ const Tweet = ({ tweet }) => {
             <FiRepeat />
           </StyledAnchor>
           <StyledAnchor href="#">
-            <FiHeart onClick={toggleLike} />
+            <FiHeart onClick={toggleLike} onKeyPress={pressToggleLike} />
             {numOfLikes > 0 && <span>{numOfLikes}</span>}
           </StyledAnchor>
           <StyledAnchor href="#">
