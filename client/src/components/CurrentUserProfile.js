@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components/macro";
 import moment from "moment";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
@@ -43,6 +44,7 @@ const StyledLi = styled.li`
 
 const CurrentUserProfile = ({ currentUser, pageTitle, setPageTitle }) => {
   const [tweets, setTweets] = React.useState(null);
+  const history = useHistory();
 
   React.useEffect(() => {
     setPageTitle("Profile");
@@ -63,7 +65,7 @@ const CurrentUserProfile = ({ currentUser, pageTitle, setPageTitle }) => {
         })
         .catch((error) => {
           console.log(error);
-          return <div>***Something went wrong***</div>;
+          history.push("/error");
         });
     }
   }, [currentUser]);

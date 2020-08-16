@@ -2,6 +2,7 @@ import React from "react";
 import Tweet from "./Tweet";
 import TextArea from "./TextArea";
 import Spinner from "./Spinner";
+import { useHistory } from "react-router";
 
 import styled from "styled-components";
 
@@ -23,6 +24,7 @@ const StyledLi = styled.li`
 
 const Homefeed = ({ setPageTitle }) => {
   const [tweets, setTweets] = React.useState(null);
+  const history = useHistory();
 
   const postTweet = (data) => {
     setTweets({ ...tweets, data });
@@ -42,7 +44,7 @@ const Homefeed = ({ setPageTitle }) => {
       })
       .catch((error) => {
         console.log(error);
-        return <div>***Something went wrong***</div>;
+        history.push("/error");
       });
   }, [tweets]);
 

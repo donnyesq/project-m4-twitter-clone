@@ -1,16 +1,25 @@
 import React from "react";
-import { u1F4A3 as Bomb } from "react-icons-kit/noto_emoji_regular/u1F4A3";
+import { FiAlertTriangle } from "react-icons/fi";
+import styled from "styled-components";
+
+const ErrorWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 
 const Error = () => {
   return (
-    <div>
-      <Bomb />
+    <ErrorWrapper>
+      <FiAlertTriangle style={{ fontSize: "60px" }} />
       <h1>An unknown error has occurred.</h1>
       <p>
         Please try refreshing the page, or contact support if the problem
         persists.
       </p>
-    </div>
+    </ErrorWrapper>
   );
 };
 

@@ -69,11 +69,9 @@ const Tweet = ({ tweet }) => {
     if (!isLiked) {
       setNumOfLikes(numOfLikes + 1);
       setIsLiked(!isLiked);
-      console.log("numoflikes", numOfLikes);
     } else {
       setNumOfLikes(numOfLikes - 1);
       setIsLiked(!isLiked);
-      console.log("numoflikes", numOfLikes);
     }
   };
 
@@ -85,11 +83,9 @@ const Tweet = ({ tweet }) => {
       if (!isLiked) {
         setNumOfLikes(numOfLikes + 1);
         setIsLiked(!isLiked);
-        console.log("numoflikes", numOfLikes);
       } else {
         setNumOfLikes(numOfLikes - 1);
         setIsLiked(!isLiked);
-        console.log("numoflikes", numOfLikes);
       }
     }
   };

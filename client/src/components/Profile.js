@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import styled from "styled-components/macro";
 import moment from "moment";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
@@ -61,8 +61,8 @@ const StyledLi = styled.li`
 const Profile = ({ pageTitle, setPageTitle }) => {
   const [tweets, setTweets] = React.useState(null);
   const { handle } = useParams();
-  console.log("handle", handle);
   const [currentUser, setCurrentUser] = React.useState(null);
+  const history = useHistory();
 
   React.useEffect(() => {
     if (currentUser) {
@@ -85,7 +85,7 @@ const Profile = ({ pageTitle, setPageTitle }) => {
       })
       .catch((error) => {
         console.log(error);
-        return <div>***Something went wrong***</div>;
+        history.push("/error");
       });
   }, []);
 
@@ -104,7 +104,7 @@ const Profile = ({ pageTitle, setPageTitle }) => {
         })
         .catch((error) => {
           console.log(error);
-          return <div>***Something went wrong***</div>;
+          history.push("/error");
         });
     }
   }, [currentUser]);

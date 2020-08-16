@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../constants";
 import { CurrentUserContext } from "./CurrentUserContext";
+import Spinner from "./Spinner";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -71,10 +72,13 @@ const TextArea = ({ postTweet }) => {
       })
       .catch((error) => {
         console.error("Error:", error);
+        // Handle Error
       });
   };
 
-  return (
+  return !currentUser ? (
+    <Spinner />
+  ) : (
     <StyledDiv>
       <div style={{ display: "flex" }}>
         <Avatar src={currentUser.profile.avatarSrc} alt="photo" />

@@ -8,6 +8,8 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
+import Error from "./components/Error";
+import Spinner from "./components/Spinner";
 
 import GlobaStyle from "./components/GlobalStyle";
 
@@ -16,10 +18,6 @@ import { CurrentUserContext } from "./components/CurrentUserContext";
 const App = () => {
   const { currentUser, status } = useContext(CurrentUserContext);
   const [pageTitle, setPageTitle] = React.useState("");
-
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="App">
@@ -63,6 +61,10 @@ const App = () => {
                   setPageTitle={setPageTitle}
                   currentUser={currentUser}
                 />
+              </Route>
+
+              <Route exact path="/error">
+                <Error />
               </Route>
 
               <Route exact path="/">

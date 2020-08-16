@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import Spinner from "./Spinner";
+import { history } from "react-router";
 
 import { FiMessageCircle, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
 
@@ -47,6 +48,7 @@ const TweetDetails = ({ pageTitle, setPageTitle }) => {
   const [tweet, setTweet] = React.useState(null);
   const [numOfLikes, setNumOfLikes] = React.useState(null);
   const [isLiked, setIsLiked] = React.useState(null);
+  const history = useHistory();
 
   React.useEffect(() => {
     if (tweet) {
@@ -62,11 +64,9 @@ const TweetDetails = ({ pageTitle, setPageTitle }) => {
     if (!isLiked) {
       setNumOfLikes(numOfLikes + 1);
       setIsLiked(!isLiked);
-      console.log("numoflikes", numOfLikes);
     } else {
       setNumOfLikes(numOfLikes - 1);
       setIsLiked(!isLiked);
-      console.log("numoflikes", numOfLikes);
     }
   };
 
@@ -78,11 +78,9 @@ const TweetDetails = ({ pageTitle, setPageTitle }) => {
       if (!isLiked) {
         setNumOfLikes(numOfLikes + 1);
         setIsLiked(!isLiked);
-        console.log("numoflikes", numOfLikes);
       } else {
         setNumOfLikes(numOfLikes - 1);
         setIsLiked(!isLiked);
-        console.log("numoflikes", numOfLikes);
       }
     }
   };
@@ -105,7 +103,7 @@ const TweetDetails = ({ pageTitle, setPageTitle }) => {
       })
       .catch((error) => {
         console.log(error);
-        return <div>***Something went wrong***</div>;
+        history.push("/error");
       });
   }, []);
 

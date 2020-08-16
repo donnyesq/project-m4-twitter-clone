@@ -1,10 +1,12 @@
 import React, { createContext } from "react";
+import { useHistory } from "react-router";
 
 export const CurrentUserContext = createContext(null);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = React.useState(null);
   const [status, setStatus] = React.useState("loading");
+  const history = useHistory();
 
   React.useEffect(() => {
     fetch("/api/me/profile", { method: "GET" })
@@ -21,7 +23,7 @@ export const CurrentUserProvider = ({ children }) => {
       })
       .catch((error) => {
         console.log(error);
-        return <div>***Something went wrong***</div>;
+        history.push("/error");
       });
   }, []);
 
