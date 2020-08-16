@@ -23,7 +23,7 @@ export const CurrentUserProvider = ({ children }) => {
       })
       .catch((error) => {
         console.log(error);
-        history.push("/error");
+        history && history.push("/error");
       });
   }, []);
 
