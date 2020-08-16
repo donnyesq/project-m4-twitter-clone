@@ -119,7 +119,9 @@ const TweetDetails = ({ pageTitle, setPageTitle }) => {
 
       <div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <h3 style={{ marginRight: "10px" }}>{tweet.author.displayName}</h3>
+          <h3 style={{ marginRight: "10px" }} tabIndex="0">
+            {tweet.author.displayName}
+          </h3>
           <p style={{ marginRight: "10px", color: "gray" }}>
             @{tweet.author.handle}
           </p>

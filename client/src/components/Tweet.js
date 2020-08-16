@@ -50,12 +50,14 @@ const Tweet = ({ tweet }) => {
 
   const handleTweetClick = (event) => {
     event.preventDefault();
+    event.stopPropagation();
 
     history.push(`/tweet/${tweet.id}`);
   };
 
   const handleTweetEnter = (event) => {
     event.preventDefault();
+    event.stopPropagation();
 
     if (event.key === "Enter") history.push(`/tweet/${tweet.id}`);
   };
@@ -115,7 +117,11 @@ const Tweet = ({ tweet }) => {
 
       <div style={{ paddingLeft: "15px" }}>
         <div style={{ display: "flex" }}>
-          <h3 onClick={handleProfileClick} style={{ marginRight: "10px" }}>
+          <h3
+            onClick={handleProfileClick}
+            style={{ marginRight: "10px" }}
+            tabIndex="0"
+          >
             {tweet.author.displayName}
           </h3>
           <p style={{ marginRight: "10px", color: "gray" }}>
