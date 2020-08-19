@@ -48,7 +48,11 @@ const TextArea = ({ postTweet }) => {
     let input = event.target.value;
     setUserInput(input);
     setCharacterCounter(280 - input.length);
-    if (characterCounter < 0) setDisableButton(true);
+    if (characterCounter < 1) {
+      setDisableButton(true);
+    } else {
+      setDisableButton(false);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -93,11 +97,23 @@ const TextArea = ({ postTweet }) => {
           onChange={handleChange}
         ></StyledTextArea>
       </div>
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <span style={{ color: disableButton ? "red" : "black" }}>
           {characterCounter}
         </span>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
           <StyledButton
             onClick={handleSubmit}
             disabled={disableButton}
