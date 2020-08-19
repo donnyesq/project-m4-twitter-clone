@@ -48,7 +48,7 @@ const TextArea = ({ postTweet }) => {
     let input = event.target.value;
     setUserInput(input);
     setCharacterCounter(280 - input.length);
-    if (characterCounter < 1) {
+    if (input.length > 280) {
       setDisableButton(true);
     } else {
       setDisableButton(false);
