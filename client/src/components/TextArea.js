@@ -20,12 +20,12 @@ const Avatar = styled.img`
   margin: 20px;
 `;
 
-const StyledInput = styled.input`
+const StyledTextArea = styled.textarea`
   border: none;
+  resize: none;
 `;
 
 const StyledButton = styled.button`
-  background-color: ${COLORS.primary};
   border-radius: 30px;
   color: white;
   border: none;
@@ -41,10 +41,14 @@ const StyledButton = styled.button`
 const TextArea = ({ postTweet }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const [userInput, setUserInput] = React.useState("");
+  const [characterCounter, setCharacterCounter] = React.useState(280);
+  const [disableButton, setDisableButton] = React.useState(false);
 
   const handleChange = (event) => {
     let input = event.target.value;
     setUserInput(input);
+    setCharacterCounter(280 - input.length);
+    if (characterCounter < 0) setDisableButton(true);
   };
 
   const handleSubmit = (event) => {
@@ -72,7 +76,6 @@ const TextArea = ({ postTweet }) => {
       })
       .catch((error) => {
         console.error("Error:", error);
-        // Handle Error
       });
   };
 
@@ -82,16 +85,29 @@ const TextArea = ({ postTweet }) => {
     <StyledDiv>
       <div style={{ display: "flex" }}>
         <Avatar src={currentUser.profile.avatarSrc} alt="photo" />
-        <StyledInput
+        <StyledTextArea
           id="form"
           placeholder="What's happening?"
           type="text"
           style={{ width: "100%" }}
           onChange={handleChange}
-        ></StyledInput>
+        ></StyledTextArea>
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <StyledButton onClick={handleSubmit}>Meow</StyledButton>
+        <span style={{ color: disableButton ? "red" : "black" }}>
+          {characterCounter}
+        </span>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <StyledButton
+            onClick={handleSubmit}
+            disabled={disableButton}
+            style={{
+              backgroundColor: disableButton ? COLORS.inactive : COLORS.primary,
+            }}
+          >
+            Meow
+          </StyledButton>
+        </div>
       </div>
     </StyledDiv>
   );

@@ -46,7 +46,7 @@ const Homefeed = ({ setPageTitle }) => {
         console.log(error);
         history.push("/error");
       });
-  }, [tweets]);
+  }, []);
 
   React.useEffect(() => {
     setPageTitle("Home");
