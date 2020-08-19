@@ -138,7 +138,7 @@ const Tweet = ({ tweet }) => {
             </p>
           </div>
 
-          <div>
+          <div style={{ wordBreak: "break-all" }}>
             {tweet.status}
             <div
               style={{
@@ -163,7 +163,9 @@ const Tweet = ({ tweet }) => {
             </StyledAnchor>
             <StyledAnchor href="#">
               <FiHeart onClick={toggleLike} onKeyPress={pressToggleLike} />
-              {numOfLikes > 0 && <span>{numOfLikes}</span>}
+              <span>
+                {numOfLikes > 0 ? <span>{numOfLikes}</span> : <span>{""}</span>}
+              </span>
             </StyledAnchor>
             <StyledAnchor href="#">
               <FiShare />

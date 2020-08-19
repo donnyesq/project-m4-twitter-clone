@@ -23,6 +23,7 @@ const Avatar = styled.img`
 const StyledTextArea = styled.textarea`
   border: none;
   resize: none;
+  padding: 10px;
 `;
 
 const StyledButton = styled.button`
