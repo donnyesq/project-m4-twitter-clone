@@ -44,7 +44,6 @@ const StyledAnchor = styled.a`
 `;
 
 const Tweet = ({ tweet }) => {
-  console.log("tweet", tweet);
   const history = useHistory();
   const [numOfLikes, setNumOfLikes] = React.useState(tweet.numLikes);
   const [isLiked, setIsLiked] = React.useState(tweet.isLiked);
