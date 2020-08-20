@@ -27,10 +27,10 @@ const Homefeed = ({ setPageTitle }) => {
   const history = useHistory();
 
   const postTweet = (data) => {
-    setTweets({ ...tweets, data });
+    getTweets();
   };
 
-  React.useEffect(() => {
+  const getTweets = () => {
     fetch("/api/me/home-feed", { method: "GET" })
       .then((response) => {
         if (response.ok) {
@@ -46,7 +46,8 @@ const Homefeed = ({ setPageTitle }) => {
         console.log(error);
         history.push("/error");
       });
-  }, []);
+  };
+  React.useEffect(getTweets, []);
 
   React.useEffect(() => {
     setPageTitle("Home");

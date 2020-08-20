@@ -75,8 +75,7 @@ const TextArea = ({ postTweet }) => {
       })
       .then((data) => {
         postTweet(data);
-        const form = document.querySelector("#form");
-        form.value = "";
+
         setUserInput("");
       })
       .catch((error) => {
@@ -94,6 +93,7 @@ const TextArea = ({ postTweet }) => {
           id="form"
           placeholder="What's happening?"
           type="text"
+          value={userInput}
           style={{ width: "100%" }}
           onChange={handleChange}
         ></StyledTextArea>
